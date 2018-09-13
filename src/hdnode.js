@@ -9,7 +9,7 @@ var BigInteger = require('bigi')
 var ECPair = require('./ecpair')
 
 var ecurve = require('ecurve')
-var curve = ecurve.getCurveByName('secp256k1')
+var curve = ecurve.getCurveByName('secp256r1')
 
 function HDNode (keyPair, chainCode) {
   typeforce(types.tuple('ECPair', types.Buffer256bit), arguments)
@@ -25,7 +25,7 @@ function HDNode (keyPair, chainCode) {
 
 HDNode.HIGHEST_BIT = 0x80000000
 HDNode.LENGTH = 78
-HDNode.MASTER_SECRET = new Buffer('Bitcoin seed')
+HDNode.MASTER_SECRET = Buffer.from('Nist256p1 seed', 'utf8')
 
 HDNode.fromSeedBuffer = function (seed, network) {
   typeforce(types.tuple(types.Buffer, types.maybe(types.Network)), arguments)
